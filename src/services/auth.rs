@@ -16,7 +16,7 @@ impl AuthService for MyAuthService {
         let req = request.into_inner();
 
         // Argon2 password hashing
-        let params = Params::new(95000, 4000, 1500, None)
+        let params = Params::new(95000, 100, 1500, None)
             .map_err(|_| Status::internal("Invalid Argon2 parameters"))?;
         let argon2 = Argon2::new(Algorithm::Argon2id, Version::V0x13, params);
         let salt = SaltString::generate(&mut OsRng);
